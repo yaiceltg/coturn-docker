@@ -1,7 +1,7 @@
 #!/bin/bash -x
 set -e
 
-echo "external-ip=$KMS_STUN_IP_AUX" > /etc/turnserver.conf
+echo "external-ip=$EXTERNAL_IP" > /etc/turnserver.conf
 echo "listening-port=3478" >> /etc/turnserver.conf
 echo "fingerprint" >> /etc/turnserver.conf
 echo "lt-cred-mech" >> /etc/turnserver.conf
