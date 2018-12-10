@@ -1,4 +1,4 @@
-FROM ubuntu:16.06
+FROM ubuntu:16.04
 
 MAINTAINER yaiceltg@gmail.com
 
