@@ -13,4 +13,4 @@ echo "simple-log" >> /etc/turnserver.conf
 echo "redis-userdb=\"ip=$DB_HOST dbname=0 password=$DB_PASSWORD connect_timeout=30\"" >> /etc/turnserver.conf
 echo "verbose" >> /etc/turnserver.conf
 
-exec /usr/bin/coturn
+exec /etc/init.d/coturn start
