@@ -14,9 +14,13 @@ RUN apt-get update && \
 RUN echo "TURNSERVER_ENABLED=1" > /etc/default/coturn
 
 # Copy KMS entrypoint
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
-ENTRYPOINT ["entrypoint.sh"]
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh \
+ && ln -s /usr/local/bin/docker-entrypoint.sh \
+          /usr/local/bin/docker-entrypoint
+
+ENTRYPOINT ["docker-entrypoint.sh"]
 
 # Coturn listens on port 3478 by default
 EXPOSE 3478 3478/udp
