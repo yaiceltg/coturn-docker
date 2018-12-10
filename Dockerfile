@@ -1,6 +1,6 @@
 FROM ubuntu:16.06
 
-MAINTAINER Yaicel Torres Garces
+MAINTAINER yaiceltg@gmail.com
 
 # Install COTURN
 RUN apt-get update && \
@@ -13,11 +13,16 @@ RUN apt-get update && \
 #
 RUN echo "TURNSERVER_ENABLED=1" > /etc/default/coturn
 
-#
-RUN cp turnserver.conf /etc/turnserver.conf
+# Copy KMS entrypoint
+COPY entrypoint.sh /entrypoint.sh
 
-#
+ENTRYPOINT ["/entrypoint.sh"]
+
+# Coturn listens on port 3478 by default
 EXPOSE 3478 3478/udp
+
+# These ports are recommended to be opened, as WebRTC randomly exchanges media through any of them
+EXPOSE 49152-65535/udp
 
 #
 CMD ["coturn"]
